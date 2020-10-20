@@ -9,6 +9,7 @@
 #	Addition: One command to rule them all, One command to find it, and One command to Run it! 
 #
 #     > powershell -nop -c "iex(New-Object Net.WebClient).DownloadString('https://git.io/JJ8R4')"
+#     > powershell -nop -c "iex(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/swapnil0709/win10script/master/win10debloat.ps1')"
 #
 #	Chris Titus Tech Additions:
 #
@@ -164,7 +165,7 @@ $tweaks = @(
 	"DisableAdobeFlash",            # "EnableAdobeFlash",
 	#"InstallMediaPlayer", 		# "UninstallMediaPlayer",
 	"UninstallInternetExplorer",  # "InstallInternetExplorer",
-	"UninstallWorkFolders",       # "InstallWorkFolders",
+	"UninstallWorkFolders"       # "InstallWorkFolders",
 	#"InstallLinuxSubsystem",      # "UninstallLinuxSubsystem",
 	# "InstallHyperV",              # "UninstallHyperV",
 	#"SetPhotoViewerAssociation",    # "UnsetPhotoViewerAssociation",

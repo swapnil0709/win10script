@@ -30,14 +30,14 @@ $tweaks = @(
 	
 	### Chris Titus Tech Additions
 	"TitusRegistryTweaks",
-	"InstallTitusProgs", #REQUIRED FOR OTHER PROGRAM INSTALLS!
-	"Install7Zip",
-	"InstallNotepadplusplus",
-	"InstallIrfanview",
-	"InstallVLC",
-	"InstallAdobe",
-	"InstallBrave",
-	"ChangeDefaultApps",
+	# "InstallTitusProgs", #REQUIRED FOR OTHER PROGRAM INSTALLS!
+	# "Install7Zip",
+	# "InstallNotepadplusplus",
+	# "InstallIrfanview",
+	# "InstallVLC",
+	# "InstallAdobe",
+	# "InstallBrave",
+	# "ChangeDefaultApps",
 
 	### Windows Apps
 	"DebloatAll",
@@ -103,7 +103,8 @@ $tweaks = @(
 	# "DisableFastStartup",         # "EnableFastStartup",
 
 	### UI Tweaks ###
-	"DisableActionCenter",          # "EnableActionCenter",
+	#"DisableActionCenter",           
+	"EnableActionCenter",
 	"EnableLockScreen",				# "DisableLockScreen",
 	"EnableLockScreenRS1",			# "DisableLockScreenRS1",
 	# "HideNetworkFromLockScreen",    # "ShowNetworkOnLockScreen",
@@ -118,7 +119,8 @@ $tweaks = @(
 	# "ShowSmallTaskbarIcons",        # "ShowLargeTaskbarIcons",
 	# "SetTaskbarCombineWhenFull",    # "SetTaskbarCombineNever",     # "SetTaskbarCombineAlways",
 	"HideTaskbarPeopleIcon",        # "ShowTaskbarPeopleIcon",
-	"ShowTrayIcons",                # "HideTrayIcons",
+	#"ShowTrayIcons",                
+	"HideTrayIcons",
 	"DisableSearchAppInStore",      # "EnableSearchAppInStore",
 	"DisableNewAppPrompt",          # "EnableNewAppPrompt",
 	# "SetControlPanelSmallIcons",  # "SetControlPanelLargeIcons",  # "SetControlPanelCategories",
@@ -126,7 +128,7 @@ $tweaks = @(
 	# "AddENKeyboard",              # "RemoveENKeyboard",
 	"EnableNumlock",             	# "DisableNumlock",
 	"EnableDarkMode",				# "DisableDarkMode",
-	"Stop-EdgePDF",
+	#"Stop-EdgePDF",
 
 	### Explorer UI Tweaks ###
 	"ShowKnownExtensions",          # "HideKnownExtensions",
@@ -160,14 +162,14 @@ $tweaks = @(
 	# "UninstallWindowsStore",      # "InstallWindowsStore",
 	# "DisableXboxFeatures",          # "EnableXboxFeatures",
 	"DisableAdobeFlash",            # "EnableAdobeFlash",
-	"InstallMediaPlayer", 		# "UninstallMediaPlayer",
+	#"InstallMediaPlayer", 		# "UninstallMediaPlayer",
 	"UninstallInternetExplorer",  # "InstallInternetExplorer",
 	"UninstallWorkFolders",       # "InstallWorkFolders",
-	"InstallLinuxSubsystem",      # "UninstallLinuxSubsystem",
+	#"InstallLinuxSubsystem",      # "UninstallLinuxSubsystem",
 	# "InstallHyperV",              # "UninstallHyperV",
-	"SetPhotoViewerAssociation",    # "UnsetPhotoViewerAssociation",
-	"AddPhotoViewerOpenWith",       # "RemovePhotoViewerOpenWith",
-	"InstallPDFPrinter"		# "UninstallPDFPrinter",
+	#"SetPhotoViewerAssociation",    # "UnsetPhotoViewerAssociation",
+	#"AddPhotoViewerOpenWith",       # "RemovePhotoViewerOpenWith",
+	#"InstallPDFPrinter"		# "UninstallPDFPrinter",
 	# "UninstallXPSPrinter",          # "InstallXPSPrinter",
 	# "RemoveFaxPrinter",             # "AddFaxPrinter",
 
@@ -234,73 +236,73 @@ Function TitusRegistryTweaks {
 	If (!(Get-ItemProperty $UpdatesPath  DeferQualityUpdatesPeriodInDays)) { New-ItemProperty -Path $UpdatesPath -Name "ActiveHoursStart" -Type DWord -Value 8 }
 	Set-ItemProperty -Path $UpdatesPath -Name "ActiveHoursStart" -Type DWord -Value 8
 }
-Function InstallTitusProgs {
-	Write-Output "Installing Chocolatey"
-	Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-	choco install chocolatey-core.extension -y
-	Write-Output "Running O&O Shutup with Recommended Settings"
-	Import-Module BitsTransfer
-	Start-BitsTransfer -Source "https://raw.githubusercontent.com/ChrisTitusTech/win10script/master/ooshutup10.cfg" -Destination ooshutup10.cfg
-	Start-BitsTransfer -Source "https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe" -Destination OOSU10.exe
-	./OOSU10.exe ooshutup10.cfg /quiet
-}
+# Function InstallTitusProgs {
+# 	Write-Output "Installing Chocolatey"
+# 	Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+# 	choco install chocolatey-core.extension -y
+# 	Write-Output "Running O&O Shutup with Recommended Settings"
+# 	Import-Module BitsTransfer
+# 	Start-BitsTransfer -Source "https://raw.githubusercontent.com/ChrisTitusTech/win10script/master/ooshutup10.cfg" -Destination ooshutup10.cfg
+# 	Start-BitsTransfer -Source "https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe" -Destination OOSU10.exe
+# 	./OOSU10.exe ooshutup10.cfg /quiet
+# }
 
-Function InstallAdobe {
-	Show-Choco-Menu -Title "Do you want to install Adobe Acrobat Reader?" -ChocoInstall "adobereader"
-}
+# Function InstallAdobe {
+# 	Show-Choco-Menu -Title "Do you want to install Adobe Acrobat Reader?" -ChocoInstall "adobereader"
+# }
 
 Function InstallJava {
 	Write-Output "Installing Java"
 	choco install jre8 -y
 }
 
-Function InstallBrave {
-	do
- {
-    Clear-Host
-    Write-Host "================ Do You Want to Install Brave Browser? ================"
-    Write-Host "Y: Press 'Y' to do this."
-    Write-Host "2: Press 'N' to skip this."
-	Write-Host "Q: Press 'Q' to stop the entire script."
-    $selection = Read-Host "Please make a selection"
-    switch ($selection)
-    {
-    'y' { 
-		Invoke-WebRequest -Uri "https://laptop-updates.brave.com/download/CHR253" -OutFile brave.exe
-		./brave.exe /silent /install	
-	}
-    'n' { Break }
-    'q' { Exit  }
-    }
- }
- until ($selection -match "y" -or $selection -match "n" -or $selection -match "q")
+# Function InstallBrave {
+# 	do
+#  {
+#     Clear-Host
+#     Write-Host "================ Do You Want to Install Brave Browser? ================"
+#     Write-Host "Y: Press 'Y' to do this."
+#     Write-Host "2: Press 'N' to skip this."
+# 	Write-Host "Q: Press 'Q' to stop the entire script."
+#     $selection = Read-Host "Please make a selection"
+#     switch ($selection)
+#     {
+#     'y' { 
+# 		Invoke-WebRequest -Uri "https://laptop-updates.brave.com/download/CHR253" -OutFile brave.exe
+# 		./brave.exe /silent /install	
+# 	}
+#     'n' { Break }
+#     'q' { Exit  }
+#     }
+#  }
+#  until ($selection -match "y" -or $selection -match "n" -or $selection -match "q")
 	
-}
-Function Install7Zip {
-	Write-Output "Installing 7-Zip"
-	choco install 7zip -y
-}
+# }
+# Function Install7Zip {
+# 	Write-Output "Installing 7-Zip"
+# 	choco install 7zip -y
+# }
 
-Function InstallNotepadplusplus {
-	Write-Output "Installing Notepad++"
-	choco install notepadplusplus -y
-}
+# Function InstallNotepadplusplus {
+# 	Write-Output "Installing Notepad++"
+# 	choco install notepadplusplus -y
+# }
 
-Function InstallVLC {
-	Write-Output "Installing VLC"
-	choco install vlc -y
-}
+# Function InstallVLC {
+# 	Write-Output "Installing VLC"
+# 	choco install vlc -y
+# }
 
-Function InstallIrfanview {
-	Write-Output "Installing IrFanView Image Viewer"
-	choco install irfanview -y
-}
+# Function InstallIrfanview {
+# 	Write-Output "Installing IrFanView Image Viewer"
+# 	choco install irfanview -y
+# }
 
-Function ChangeDefaultApps {
-	Write-Output "Setting Default Programs - Notepad++ Brave VLC IrFanView"
-	Start-BitsTransfer -Source "https://raw.githubusercontent.com/ChrisTitusTech/win10script/master/MyDefaultAppAssociations.xml" -Destination $HOME\Desktop\MyDefaultAppAssociations.xml
-	dism /online /Import-DefaultAppAssociations:"%UserProfile%\Desktop\MyDefaultAppAssociations.xml"
-}
+# Function ChangeDefaultApps {
+# 	Write-Output "Setting Default Programs - Notepad++ Brave VLC IrFanView"
+# 	Start-BitsTransfer -Source "https://raw.githubusercontent.com/ChrisTitusTech/win10script/master/MyDefaultAppAssociations.xml" -Destination $HOME\Desktop\MyDefaultAppAssociations.xml
+# 	dism /online /Import-DefaultAppAssociations:"%UserProfile%\Desktop\MyDefaultAppAssociations.xml"
+# }
 
 ##########
 # Privacy Tweaks
